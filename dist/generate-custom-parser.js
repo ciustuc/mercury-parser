@@ -586,7 +586,7 @@ var WHITELIST_ATTRS_RE$1 = new RegExp("^(".concat(WHITELIST_ATTRS$1.join('|'), "
 
 var CLEAN_CONDITIONALLY_TAGS$1 = ['ul', 'ol', 'table', 'div', 'button', 'form'].join(','); // cleanHeaders
 
-var HEADER_TAGS$1 = ['h2', 'h3', 'h4', 'h5', 'h6'];
+var HEADER_TAGS$1 = ['h5', 'h6'];
 var HEADER_TAG_LIST$1 = HEADER_TAGS$1.join(','); // // CONTENT FETCHING CONSTANTS ////
 // A list of strings that can be considered unlikely candidates when
 // extracting content from a resource. These strings are joined together

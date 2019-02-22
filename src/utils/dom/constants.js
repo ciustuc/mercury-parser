@@ -66,7 +66,7 @@ export const CLEAN_CONDITIONALLY_TAGS = [
 ].join(',');
 
 // cleanHeaders
-const HEADER_TAGS = ['h2', 'h3', 'h4', 'h5', 'h6'];
+const HEADER_TAGS = ['h5', 'h6'];
 export const HEADER_TAG_LIST = HEADER_TAGS.join(',');
 
 // // CONTENT FETCHING CONSTANTS ////
