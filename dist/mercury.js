@@ -1304,17 +1304,19 @@ function absolutizeSet($, rootUrl, $content) {
       // descriptors can only contain positive numbers followed immediately by either 'w' or 'x'
       // space characters inside the URL should be encoded (%20 or +)
       var candidates = urlSet.match(/(?:\s*)(\S+(?:\s*[\d.]+[wx])?)(?:\s*,\s*)?/g);
-      var absoluteCandidates = candidates.map(function (candidate) {
-        // a candidate URL cannot start or end with a comma
-        // descriptors are separated from the URLs by unescaped whitespace
-        var parts = candidate.trim().replace(/,$/, '').split(/\s+/);
-        parts[0] = URL.resolve(rootUrl, parts[0]);
-        return parts.join(' ');
-      });
+      if (candidates) {
+        var absoluteCandidates = candidates.map(function (candidate) {
+          // a candidate URL cannot start or end with a comma
+          // descriptors are separated from the URLs by unescaped whitespace
+          var parts = candidate.trim().replace(/,$/, '').split(/\s+/);
+          parts[0] = URL.resolve(rootUrl, parts[0]);
+          return parts.join(' ');
+        });
 
-      var absoluteUrlSet = _toConsumableArray(new _Set(absoluteCandidates)).join(', ');
+        var absoluteUrlSet = _toConsumableArray(new _Set(absoluteCandidates)).join(', ');
 
-      setAttr(node, 'srcset', absoluteUrlSet);
+        setAttr(node, 'srcset', absoluteUrlSet);
+      }
     }
   });
 }

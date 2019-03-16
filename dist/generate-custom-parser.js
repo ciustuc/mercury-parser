@@ -90,17 +90,19 @@ function absolutizeSet($, rootUrl, $content) {
       // descriptors can only contain positive numbers followed immediately by either 'w' or 'x'
       // space characters inside the URL should be encoded (%20 or +)
       var candidates = urlSet.match(/(?:\s*)(\S+(?:\s*[\d.]+[wx])?)(?:\s*,\s*)?/g);
-      var absoluteCandidates = candidates.map(function (candidate) {
-        // a candidate URL cannot start or end with a comma
-        // descriptors are separated from the URLs by unescaped whitespace
-        var parts = candidate.trim().replace(/,$/, '').split(/\s+/);
-        parts[0] = URL.resolve(rootUrl, parts[0]);
-        return parts.join(' ');
-      });
+      if (candidates) {
+        var absoluteCandidates = candidates.map(function (candidate) {
+          // a candidate URL cannot start or end with a comma
+          // descriptors are separated from the URLs by unescaped whitespace
+          var parts = candidate.trim().replace(/,$/, '').split(/\s+/);
+          parts[0] = URL.resolve(rootUrl, parts[0]);
+          return parts.join(' ');
+        });
 
-      var absoluteUrlSet = _toConsumableArray(new set(absoluteCandidates)).join(', ');
+        var absoluteUrlSet = _toConsumableArray(new set(absoluteCandidates)).join(', ');
 
-      setAttr(node, 'srcset', absoluteUrlSet);
+        setAttr(node, 'srcset', absoluteUrlSet);
+      }
     }
   });
 }
@@ -1473,17 +1475,19 @@ function absolutizeSet$1($, rootUrl, $content) {
       // descriptors can only contain positive numbers followed immediately by either 'w' or 'x'
       // space characters inside the URL should be encoded (%20 or +)
       var candidates = urlSet.match(/(?:\s*)(\S+(?:\s*[\d.]+[wx])?)(?:\s*,\s*)?/g);
-      var absoluteCandidates = candidates.map(function (candidate) {
-        // a candidate URL cannot start or end with a comma
-        // descriptors are separated from the URLs by unescaped whitespace
-        var parts = candidate.trim().replace(/,$/, '').split(/\s+/);
-        parts[0] = URL$1.resolve(rootUrl, parts[0]);
-        return parts.join(' ');
-      });
+      if (candidates) {
+        var absoluteCandidates = candidates.map(function (candidate) {
+          // a candidate URL cannot start or end with a comma
+          // descriptors are separated from the URLs by unescaped whitespace
+          var parts = candidate.trim().replace(/,$/, '').split(/\s+/);
+          parts[0] = URL$1.resolve(rootUrl, parts[0]);
+          return parts.join(' ');
+        });
 
-      var absoluteUrlSet = _toConsumableArray$1(new _Set(absoluteCandidates)).join(', ');
+        var absoluteUrlSet = _toConsumableArray$1(new _Set(absoluteCandidates)).join(', ');
 
-      setAttr$1(node, 'srcset', absoluteUrlSet);
+        setAttr$1(node, 'srcset', absoluteUrlSet);
+      }
     }
   });
 }

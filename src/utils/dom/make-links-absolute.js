@@ -26,18 +26,20 @@ function absolutizeSet($, rootUrl, $content) {
       const candidates = urlSet.match(
         /(?:\s*)(\S+(?:\s*[\d.]+[wx])?)(?:\s*,\s*)?/g
       );
-      const absoluteCandidates = candidates.map(candidate => {
-        // a candidate URL cannot start or end with a comma
-        // descriptors are separated from the URLs by unescaped whitespace
-        const parts = candidate
-          .trim()
-          .replace(/,$/, '')
-          .split(/\s+/);
-        parts[0] = URL.resolve(rootUrl, parts[0]);
-        return parts.join(' ');
-      });
-      const absoluteUrlSet = [...new Set(absoluteCandidates)].join(', ');
-      setAttr(node, 'srcset', absoluteUrlSet);
+      if (candidates) {
+        const absoluteCandidates = candidates.map(candidate => {
+          // a candidate URL cannot start or end with a comma
+          // descriptors are separated from the URLs by unescaped whitespace
+          const parts = candidate
+            .trim()
+            .replace(/,$/, '')
+            .split(/\s+/);
+          parts[0] = URL.resolve(rootUrl, parts[0]);
+          return parts.join(' ');
+        });
+        const absoluteUrlSet = [...new Set(absoluteCandidates)].join(', ');
+        setAttr(node, 'srcset', absoluteUrlSet);
+      }
     }
   });
 }
